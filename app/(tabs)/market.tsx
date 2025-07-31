@@ -82,7 +82,7 @@ export default function MarketScreen() {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#1a1625', '#2d1b69', '#4c1d95']}
+        colors={['#0f0c29', '#24243e', '#302b63']}
         style={styles.gradient}
       >
         <View style={styles.header}>

@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { User, Settings, CreditCard, Bell, CircleHelp as HelpCircle, Star, Calendar, FileText, TrendingUp, Users, Shield, LogOut, X, Crown, Calculator, BookOpen, Phone, Mail } from 'lucide-react-native';
+import { User, Settings, CreditCard, Bell, CircleHelp as HelpCircle, Star, Calendar, FileText, TrendingUp, Users, Shield, LogOut, X, Crown, Calculator, BookOpen, Phone, Mail, Sparkles, Moon, Sun } from 'lucide-react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,6 +22,7 @@ interface HamburgerMenuProps {
 export default function HamburgerMenu({ isVisible, onClose, onNavigate }: HamburgerMenuProps) {
   const slideAnim = useRef(new Animated.Value(-width)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const sparkleAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     if (isVisible) {
@@ -36,6 +37,20 @@ export default function HamburgerMenu({ isVisible, onClose, onNavigate }: Hambur
           duration: 300,
           useNativeDriver: true,
         }),
+        Animated.loop(
+          Animated.sequence([
+            Animated.timing(sparkleAnim, {
+              toValue: 1,
+              duration: 2000,
+              useNativeDriver: true,
+            }),
+            Animated.timing(sparkleAnim, {
+              toValue: 0,
+              duration: 2000,
+              useNativeDriver: true,
+            }),
+          ])
+        ),
       ]).start();
     } else {
       Animated.parallel([
@@ -53,13 +68,18 @@ export default function HamburgerMenu({ isVisible, onClose, onNavigate }: Hambur
     }
   }, [isVisible]);
 
+  const sparkleOpacity = sparkleAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.3, 1],
+  });
+
   const menuSections = [
     {
       title: 'Profile & Account',
       items: [
         { icon: User, label: 'My Profile', screen: 'profile', color: '#7c3aed' },
         { icon: Crown, label: 'Subscription', screen: 'subscription', color: '#ffd700' },
-        { icon: CreditCard, label: 'Payment History', screen: 'payments', color: '#10b981' },
+        { icon: CreditCard, label: 'Payment History', screen: 'payment-history', color: '#10b981' },
         { icon: Settings, label: 'Settings', screen: 'settings', color: '#6b7280' },
       ],
     },
@@ -69,7 +89,7 @@ export default function HamburgerMenu({ isVisible, onClose, onNavigate }: Hambur
         { icon: Star, label: 'Daily Horoscope', screen: 'horoscope', color: '#f59e0b' },
         { icon: Calculator, label: 'Numerology', screen: 'numerology', color: '#8b5cf6' },
         { icon: Calendar, label: 'Panchang', screen: 'panchang', color: '#ef4444' },
-        { icon: BookOpen, label: 'Astro Learning', screen: 'learning', color: '#06b6d4' },
+        { icon: BookOpen, label: 'Astro Learning', screen: 'astro-learning', color: '#06b6d4' },
       ],
     },
     {
@@ -84,10 +104,10 @@ export default function HamburgerMenu({ isVisible, onClose, onNavigate }: Hambur
       title: 'Support & Help',
       items: [
         { icon: Bell, label: 'Notifications', screen: 'notifications', color: '#f59e0b' },
-        { icon: HelpCircle, label: 'Help & FAQ', screen: 'help', color: '#6366f1' },
-        { icon: Phone, label: 'Contact Us', screen: 'contact', color: '#10b981' },
+        { icon: HelpCircle, label: 'Help & FAQ', screen: 'help-faq', color: '#6366f1' },
+        { icon: Phone, label: 'Contact Us', screen: 'contact-us', color: '#10b981' },
         { icon: Mail, label: 'Feedback', screen: 'feedback', color: '#8b5cf6' },
-        { icon: Shield, label: 'Privacy Policy', screen: 'privacy', color: '#6b7280' },
+        { icon: Shield, label: 'Privacy Policy', screen: 'privacy-policy', color: '#6b7280' },
       ],
     },
   ];
@@ -107,9 +127,17 @@ export default function HamburgerMenu({ isVisible, onClose, onNavigate }: Hambur
       
       <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }] }]}>
         <LinearGradient
-          colors={['#1a1625', '#2d1b69', '#4c1d95']}
+          colors={['#0f0c29', '#24243e', '#302b63']}
           style={styles.menuGradient}
         >
+          {/* Animated Background Stars */}
+          <Animated.View style={[styles.starsContainer, { opacity: sparkleOpacity }]}>
+            <Sparkles size={16} color="#ffd700" style={[styles.star, styles.star1]} />
+            <Sun size={14} color="#f59e0b" style={[styles.star, styles.star2]} />
+            <Moon size={18} color="#8b5cf6" style={[styles.star, styles.star3]} />
+            <Star size={12} color="#c084fc" style={[styles.star, styles.star4]} />
+          </Animated.View>
+
           {/* Header */}
           <View style={styles.header}>
             <View style={styles.headerContent}>
@@ -204,6 +232,30 @@ const styles = StyleSheet.create({
   },
   menuGradient: {
     flex: 1,
+  },
+  starsContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  star: {
+    position: 'absolute',
+  },
+  star1: {
+    top: '15%',
+    left: '10%',
+  },
+  star2: {
+    top: '25%',
+    right: '15%',
+  },
+  star3: {
+    bottom: '40%',
+    left: '20%',
+  },
+  star4: {
+    bottom: '30%',
+    right: '25%',
   },
   header: {
     flexDirection: 'row',

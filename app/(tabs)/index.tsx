@@ -26,6 +26,10 @@ import HamburgerMenu from '@/components/HamburgerMenu';
 import ProfileScreen from '@/components/ProfileScreen';
 import HoroscopeScreen from '@/components/HoroscopeScreen';
 import NumerologyScreen from '@/components/NumerologyScreen';
+import SubscriptionScreen from '@/components/SubscriptionScreen';
+import PaymentHistoryScreen from '@/components/PaymentHistoryScreen';
+import SettingsScreen from '@/components/SettingsScreen';
+import NotificationsScreen from '@/components/NotificationsScreen';
 
 const { width } = Dimensions.get('window');
 
@@ -75,11 +79,23 @@ export default function HomeScreen() {
   if (currentScreen === 'numerology') {
     return <NumerologyScreen onClose={handleCloseScreen} />;
   }
+  if (currentScreen === 'subscription') {
+    return <SubscriptionScreen onClose={handleCloseScreen} />;
+  }
+  if (currentScreen === 'payment-history') {
+    return <PaymentHistoryScreen onClose={handleCloseScreen} />;
+  }
+  if (currentScreen === 'settings') {
+    return <SettingsScreen onClose={handleCloseScreen} />;
+  }
+  if (currentScreen === 'notifications') {
+    return <NotificationsScreen onClose={handleCloseScreen} />;
+  }
 
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#1a1625', '#2d1b69', '#4c1d95']}
+        colors={['#0f0c29', '#24243e', '#302b63']}
         style={styles.gradient}
       >
         {/* Header */}
