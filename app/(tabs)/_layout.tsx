@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Platform } from 'react-native';
-import { Chrome as Home, ChartBar as BarChart3, Bot, TrendingUp, FileText } from 'lucide-react-native';
+import { Sparkles as Home, BarChart3, Bot, TrendingUp, FileText } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -8,15 +8,20 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#1a1625',
-          borderTopColor: '#2d1b69',
+          backgroundColor: '#0a0a0f',
+          borderTopColor: '#1a1625',
           borderTopWidth: 1,
           height: Platform.OS === 'ios' ? 85 : 65,
           paddingBottom: Platform.OS === 'ios' ? 25 : 10,
           paddingTop: 10,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.3,
+          shadowRadius: 8,
+          elevation: 10,
         },
         tabBarActiveTintColor: '#ffd700',
-        tabBarInactiveTintColor: '#8b5cf6',
+        tabBarInactiveTintColor: '#6b7280',
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: '600',
