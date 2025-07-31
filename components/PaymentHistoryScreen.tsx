@@ -9,19 +9,7 @@ import {
   Animated,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import {
-  CreditCard,
-  Download,
-  CheckCircle,
-  Clock,
-  XCircle,
-  Calendar,
-  DollarSign,
-  Receipt,
-  X,
-  Star,
-  Sparkles,
-} from 'lucide-react-native';
+import { CreditCard, Download, CircleCheck as CheckCircle, Clock, Circle as XCircle, Calendar, DollarSign, Receipt, X, Star, Sparkles } from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
 

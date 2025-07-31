@@ -10,24 +10,7 @@ import {
   Animated,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import {
-  Bell,
-  Star,
-  TrendingUp,
-  Users,
-  Calendar,
-  MessageCircle,
-  Shield,
-  Volume2,
-  Smartphone,
-  Clock,
-  X,
-  Sparkles,
-  Moon,
-  CheckCircle,
-  AlertCircle,
-  Info,
-} from 'lucide-react-native';
+import { Bell, Star, TrendingUp, Users, Calendar, MessageCircle, Shield, Volume2, Smartphone, Clock, X, Sparkles, Moon, CircleCheck as CheckCircle, CircleAlert as AlertCircle, Info } from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
 
