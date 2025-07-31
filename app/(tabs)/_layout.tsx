@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Platform } from 'react-native';
-import { Sparkles as Home, BarChart3, Bot, TrendingUp, FileText } from 'lucide-react-native';
+import { Sparkles as Home, Grid3x3 as Grid3X3, Bot, TrendingUp, FileText } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -41,7 +41,7 @@ export default function TabLayout() {
         options={{
           title: 'Charts',
           tabBarIcon: ({ size, color }) => (
-            <BarChart3 size={size} color={color} />
+            <Grid3X3 size={size} color={color} />
           ),
         }}
       />
