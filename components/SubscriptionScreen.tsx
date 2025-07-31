@@ -72,7 +72,7 @@ export default function SubscriptionScreen({ onClose }: SubscriptionScreenProps)
       price: '₹299',
       period: '/month',
       icon: Star,
-      color: ['#6b7280', '#9ca3af'],
+      color: ['#6b7280', '#9ca3af'] as const,
       features: [
         'Daily Horoscope',
         'Basic Birth Chart',
@@ -88,7 +88,7 @@ export default function SubscriptionScreen({ onClose }: SubscriptionScreenProps)
       price: '₹599',
       period: '/month',
       icon: Crown,
-      color: ['#7c3aed', '#a855f7'],
+      color: ['#7c3aed', '#a855f7'] as const,
       features: [
         'Everything in Basic',
         'All Chart Systems (Lahiri, KP)',
@@ -107,7 +107,7 @@ export default function SubscriptionScreen({ onClose }: SubscriptionScreenProps)
       price: '₹4,999',
       period: '/one-time',
       icon: Infinity,
-      color: ['#ffd700', '#f59e0b'],
+      color: ['#ffd700', '#f59e0b'] as const,
       features: [
         'Everything in Premium',
         'Lifetime Access',
@@ -184,7 +184,7 @@ export default function SubscriptionScreen({ onClose }: SubscriptionScreenProps)
             {plans.map((plan, index) => {
               const IconComponent = plan.icon;
               const isSelected = selectedPlan === plan.id;
-              
+
               return (
                 <Animated.View
                   key={plan.id}
@@ -193,16 +193,16 @@ export default function SubscriptionScreen({ onClose }: SubscriptionScreenProps)
                     isSelected && styles.selectedPlan,
                     {
                       opacity: fadeAnim,
-                      transform: [{ 
-                        translateY: Animated.multiply(slideAnim, index + 1),
-                        scale: isSelected ? 1.05 : 1,
-                      }],
+                      transform: [
+                        { translateY: Animated.multiply(slideAnim, index + 1) },
+                        ...(isSelected ? [{ scale: 1.05 }] : []),
+                      ],
                     },
                   ]}
                 >
                   <TouchableOpacity onPress={() => setSelectedPlan(plan.id)}>
                     <LinearGradient
-                      colors={isSelected ? plan.color : ['#1e1b4b', '#312e81']}
+                      colors={isSelected ? plan.color : (['#1e1b4b', '#312e81'] as const)}
                       style={styles.planGradient}
                     >
                       {plan.popular && (
@@ -210,7 +210,7 @@ export default function SubscriptionScreen({ onClose }: SubscriptionScreenProps)
                           <Text style={styles.popularText}>Most Popular</Text>
                         </View>
                       )}
-                      
+
                       <View style={styles.planHeader}>
                         <IconComponent size={32} color="#ffd700" />
                         <Text style={styles.planName}>{plan.name}</Text>
@@ -232,7 +232,7 @@ export default function SubscriptionScreen({ onClose }: SubscriptionScreenProps)
 
                       <TouchableOpacity style={styles.selectButton}>
                         <LinearGradient
-                          colors={isSelected ? ['#10b981', '#059669'] : ['#374151', '#4b5563']}
+                          colors={isSelected ? (['#10b981', '#059669'] as const) : (['#374151', '#4b5563'] as const)}
                           style={styles.selectGradient}
                         >
                           <Text style={styles.selectText}>
